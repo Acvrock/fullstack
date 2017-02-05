@@ -28,9 +28,9 @@ public class WordCountTask extends RecursiveTask<ConcurrentHashMap<String,Intege
         if(last-first<5){
             countMap = wordCount();
         }else{
-            int midlle = (last-first)/2;
-            WordCountTask wordCountTask1 = new WordCountTask(0, midlle, documentList, searchWord);
-            WordCountTask wordCountTask2 = new WordCountTask(midlle+1, last, documentList, searchWord);
+            int midlle = (last+first)/2;
+            WordCountTask wordCountTask1 = new WordCountTask(first, midlle, documentList, searchWord);
+            WordCountTask wordCountTask2 = new WordCountTask(midlle, last, documentList, searchWord);
             wordCountTask1.fork();
             wordCountTask2.fork();
             countMap.putAll(wordCountTask1.join());
